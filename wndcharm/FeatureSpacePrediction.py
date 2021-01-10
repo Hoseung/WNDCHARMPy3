@@ -509,12 +509,12 @@ class FeatureSpaceClassification( _FeatureSpacePrediction ):
 
         classification_results = self.averaged_results if self.averaged_results else self.individual_results
 
-        print '='*50
+        print('='*50)
         s = self.__class__.__name__
         if self.name:
             s += ' "' + self.name + '"'
         s += " (" + str( len( classification_results ) ) + " classifications)"
-        print s
+        print(s)
 
         acc = self.classification_accuracy
         n = self.num_classifications
@@ -526,8 +526,8 @@ class FeatureSpaceClassification( _FeatureSpacePrediction ):
             # to use normal approximation of binomial distribution:
             if ((n * acc) > 5) and ((n * (1 - acc)) > 5):
                 # Using normal approximation:
-                print "{0}/{1} correct = {2:0.2f} +/- {3:0.2f}% w/ 95% conf. (normal approx. interval)".format(
-                    n_correct, n, acc * 100, conf_interval * 100 )
+                print("{0}/{1} correct = {2:0.2f} +/- {3:0.2f}% w/ 95% conf. (normal approx. interval)".format(
+                    n_correct, n, acc * 100, conf_interval * 100 ))
             else:
                 # Using Wilson approximation:
                 # This term goes to 1 as number of classifications gets large:
@@ -540,23 +540,23 @@ class FeatureSpaceClassification( _FeatureSpacePrediction ):
                     n_correct, n, raw_acc * 100, conf_interval * 100 )
                 outstr += " ({0:0.2f} +/- {1:0.2f}% w/ 95% conf. (Wilson score interval))".format(
                         acc * 100, conf_interval * 100)
-                print outstr
+                print(outstr)
         else:
-            print "{0}/{1} correct = {2:0.2f}%".format( n_correct, n, acc * 100 )
+            print("{0}/{1} correct = {2:0.2f}%".format( n_correct, n, acc * 100 ))
 
 
         if self.std_err is not None:
-            print "Standard Error: {0:0.4f}".format( self.std_err)
+            print("Standard Error: {0:0.4f}".format( self.std_err))
         if self.pearson_coeff is not None:
-            print "Pearson Coefficient: {0:0.4f}".format( self.pearson_coeff )
-            print "Coefficient of Determination (r^2): {0:0.4f}".format( self.pearson_coeff ** 2 )
+            print("Pearson Coefficient: {0:0.4f}".format( self.pearson_coeff ))
+            print("Coefficient of Determination (r^2): {0:0.4f}".format( self.pearson_coeff ** 2 ))
         if self.spearman_coeff is not None:
-            print "Spearman Coefficient: {0:0.4f}".format( self.spearman_coeff )
-        print "\n"
+            print("Spearman Coefficient: {0:0.4f}".format( self.spearman_coeff ))
+        print("\n")
 
-        print self.ConfusionMatrix()
-        print self.SimilarityMatrix()
-        print self.AvgClassProbMatrix()
+        print(self.ConfusionMatrix())
+        print(self.SimilarityMatrix())
+        print(self.AvgClassProbMatrix())
     
     #==============================================================
     @output_railroad_switch
@@ -626,14 +626,14 @@ class FeatureSpaceClassification( _FeatureSpacePrediction ):
         #column_headers = "\t".join( self.test_set.class_names )
         #column_headers += "\n"
         #column_headers += "\t".join( [ '-'*len(name) for name in self.test_set.class_names ] )
-        #print "Distance Matrix (method = '{0}'):".format( method )
-        #print column_headers
-        print self.test_set.num_classes
+        #print("Distance Matrix (method = '{0}'):".format( method )
+        #print(column_headers
+        print(self.test_set.num_classes)
         for row in range( self.test_set.num_classes ):
             line = "{0}\t".format( self.test_set.class_names[ row ] )
             for col in range( self.test_set.num_classes ):
                 line += '{0:0.4f}\t'.format( output_matrix[ row, col ] )
-            print line
+            print(line)
 
     #==============================================================
     @classmethod
@@ -677,10 +677,10 @@ class FeatureSpaceClassification( _FeatureSpacePrediction ):
 
         # Say what we're going to do
         if not quiet:
-            print "Classifying test set '{0}' ({1} samples) against training set '{2}' ({3} samples)".\
-                    format( test_set.name, test_set.num_samples, training_set.name, training_set.num_samples )
+            print("Classifying test set '{0}' ({1} samples) against training set '{2}' ({3} samples)".\
+                    format( test_set.name, test_set.num_samples, training_set.name, training_set.num_samples ))
             if test_set.num_samples_per_group > 1:
-                print "Performing tiled classification."
+                print("Performing tiled classification.")
 
         # Any collisions? (i.e., where the distance from test sample to training sample
         # is below machine epsilon, i.e., 2.2204e-16
@@ -842,11 +842,11 @@ class FeatureSpaceRegression( _FeatureSpacePrediction ):
         if self.std_err == None:
             self.GenerateStats()
 
-        print "==========================================="
-        print "Number of observations: {0}".format( self.num_classifications )
+        print("===========================================")
+        print("Number of observations: {0}".format( self.num_classifications ))
         if self.std_err != None:
-            print "Standard error of predicted vs. ground truth values: {0}".format( self.std_err )
-        #print "p-value for this split: {0}".format( self.p_value )
+            print("Standard error of predicted vs. ground truth values: {0}".format( self.std_err ))
+        #print("p-value for this split: {0}".format( self.p_value )
 
     #=====================================================================
     @classmethod
@@ -867,13 +867,13 @@ class FeatureSpaceRegression( _FeatureSpacePrediction ):
         # say what we're gonna do
         if not quiet:
             out_str = 'Classifying test set "{0}" ({1} images, {2} features)\n\tagainst training set "{3}" ({4} images)'
-            print out_str.format( test_set.name, test_set.num_samples, \
+            print(out_str.format( test_set.name, test_set.num_samples, \
               len( test_set.feature_names ), feature_weights.associated_feature_space.name, \
-              feature_weights.associated_feature_space.num_samples )
+              feature_weights.associated_feature_space.num_samples ))
 
         if not quiet:
             column_header = "image\tground truth\tpred. val."
-            print column_header
+            print(column_header)
 
         split_result = cls( feature_weights.associated_feature_space, test_set, feature_weights,
                 name, split_number )
@@ -963,7 +963,7 @@ class FeatureSpaceRegression( _FeatureSpacePrediction ):
                       test_set.name, test_set.num_samples, len( test_set.feature_names ) )
                 out_str += '\n\tagainst training set "{0}" ({1} images)'.format(
                             training_set.name, training_set.num_samples )
-            print out_str
+            print(out_str)
 
         # Now, build the augmented feature matrices, which includes multiplying the feature
         # space by the weights, and augmenting the matrices with 1's
@@ -981,7 +981,7 @@ class FeatureSpaceRegression( _FeatureSpacePrediction ):
             augmented_test_set.num_features += 1 # Tell the object it has a new feature column
 
         if not quiet:
-            print "image\tground truth\tpred. val."
+            print("image\tground truth\tpred. val.")
 
         split_result = cls( training_set, test_set, feature_weights, name, split_number )
 

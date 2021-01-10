@@ -48,10 +48,10 @@ def initialize_module():
     for task in all_tasks:
         if task.type == task.ImageTransformTask:
             Transforms.append (task)
-#            print task.name + " added to Transforms"
+#            print(task.name + " added to Transforms"
         elif task.type == task.FeatureAlgorithmTask:
             Algorithms.append (task)
-#            print task.name + " added to Algorithms"
+#            print(task.name + " added to Algorithms"
 
     # The standard feature plans get loaded as needed from C++ statics, so they don't need to be initialized.
     # Standard sets (other plan "parts" are in Tasks.h under StdFeatureComputationPlans)
@@ -62,15 +62,15 @@ def initialize_module():
 
     # e. g.:
 #     small_feature_plan = wndcharm.StdFeatureComputationPlans.getFeatureSet()
-#     print "small feature set groups:"
+#     print("small feature set groups:"
 #     last_feature_group = None;
 #     for i in range( 0, small_feature_plan.n_features):
 #         feature_group = small_feature_plan.getFeatureGroupByIndex(i)
 #         feature_name = small_feature_plan.getFeatureNameByIndex(i)
 #         if feature_group.name != last_feature_group:
-#             print "feature_group "+feature_group.name
+#             print("feature_group "+feature_group.name
 #         last_feature_group = feature_group.name
-#         print "  feature_name "+feature_name
+#         print("  feature_name "+feature_name
 
     # while we're debugging, raise exceptions for numerical weirdness, since it all has to be dealt with somehow
     # In cases where numerical weirdness is expected and dealt with explicitly, these exceptions are
@@ -95,8 +95,8 @@ def output_railroad_switch( method_that_prints_output ):
                 del kwargs[ "mode" ]
             else:
                 mode = 'w'
-            print 'Saving output of function "{0}()" to file "{1}", mode "{2}"'.format(\
-                  method_that_prints_output.__name__, output_filepath, mode )
+            print('Saving output of function "{0}()" to file "{1}", mode "{2}"'.format(\
+                  method_that_prints_output.__name__, output_filepath, mode ))
             import sys
             backup = sys.stdout
             sys.stdout = open( output_filepath, mode )
@@ -106,8 +106,8 @@ def output_railroad_switch( method_that_prints_output ):
         elif "output_stream" in kwargs:
             output_stream = kwargs[ "output_stream" ]
             del kwargs[ "output_stream" ]
-            print 'Saving output of function "{0}()" to stream'.format(\
-                  method_that_prints_output.__name__)
+            print('Saving output of function "{0}()" to stream'.format(\
+                  method_that_prints_output.__name__))
             import sys
             backup = sys.stdout
             try:
@@ -301,7 +301,7 @@ def compare( a_list, b_list, atol=1e-7 ):
         e_in_b_str = 'e' in b_str
         if e_in_a_str != e_in_b_str:
             errmsg = "Index {0}: \"{1}\" and \"{2}\" exponents don't match."
-            print errmsg
+            print(errmsg)
             result = False
             errcount += 1
             continue
@@ -329,7 +329,7 @@ def compare( a_list, b_list, atol=1e-7 ):
         tail = '0' * diff_digits
 
         #msg = 'a_str "{0}" (len={1}), b_str "{2}" (len={3}), tail="{4}"'
-        #print msg.format( a_int_str, a_len, b_int_str, b_len, tail )
+        #print(msg.format( a_int_str, a_len, b_int_str, b_len, tail )
 
         if a_len > b_len:
 #                a = int( a_int_str + a_addl_zero )
@@ -352,10 +352,10 @@ def compare( a_list, b_list, atol=1e-7 ):
 
         diff = abs( a - b )
 
-        #print "{0}->{1}=={2}<-{3} : {4} <= {5}".format( a_raw, a, b, b_raw, diff, 10 ** diff_digits )
+        #print("{0}->{1}=={2}<-{3} : {4} <= {5}".format( a_raw, a, b, b_raw, diff, 10 ** diff_digits )
         if diff > 10 ** diff_digits:      
             errstr = "****Index {0}: {1} isn't enough like {2}".format( count, a_raw, b_raw )
-            print errstr
+            print(errstr)
             result = False
             errcount += 1
             continue
@@ -387,7 +387,7 @@ def print_log_message( fv ):
         outstr += " width={} height={}".format( fv.original_px_plane.width, fv.original_px_plane.height )
     else:
         outstr += " (no pixel plane came through the wire)"
-    print outstr
+    print(outstr)
     #logger.info( line )
 
 def WorkerFunction( fv ):
@@ -401,7 +401,7 @@ def WorkerFunctionVerbose( fv ):
         fv.GenerateFeatures( write_to_disk=True, quiet=False )
     except Exception:
         import sys, traceback
-        print traceback.print_exc()
+        print(traceback.print_exc())
 
 def parallel_compute( samples, n_jobs=True, quiet=True ):
     """WND-CHARM implementation of symmetric multiprocessing, see:
@@ -432,7 +432,7 @@ def parallel_compute( samples, n_jobs=True, quiet=True ):
         result.get()
         pool.join()
     except KeyboardInterrupt:
-        print "Caught KeyboardInterrupt, terminating workers"
+        print("Caught KeyboardInterrupt, terminating workers")
         pool.terminate()
         pool.join()
     except Exception:

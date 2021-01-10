@@ -31,7 +31,8 @@ pkg_dir = os.path.join( os.path.dirname( os.path.realpath(__file__)), 'wndcharm'
 # This file gets imported by __init__.py to set __version__ during package import
 # Here we do NOT want to import the package we are building to set this variable!
 # We DO want to set the version in setup() and have it all synchronized from a single place (wndcharm/_version.py)
-execfile(os.path.join (pkg_dir,'_version.py'))
+fn = os.path.join(pkg_dir,'_version.py')
+exec(compile(open(fn, "rb").read(), fn, 'exec'))
 
 try:
     from subprocess import check_output
@@ -46,14 +47,14 @@ try:
         if check_output(['git', 'diff-index', '--name-only', 'HEAD'], stderr=bitbucket ).strip():
             git_hash += 'localmod'
 
-    print "Building WND-CHARM {} at git repo commit {}...".format( __version__, git_hash )
+    print("Building WND-CHARM {} at git repo commit {}...".format( __version__, git_hash ))
     # this construction matches what is done in __init__.py by importing
     # both _version.py and _git_hash.py use "normalized" semantic version string (a.k.a., dots)
     __version__ = __version__+ '+' + git_hash
     with open( os.path.join( pkg_dir, '_git_hash.py' ), 'w+' ) as f:
-	f.write( "__git_hash__ = '{0}'\n".format( git_hash) )
+        f.write( "__git_hash__ = '{0}'\n".format( git_hash) )
 except:
-    print "Building WND-CHARM {} release version...".format( __version__ )
+    print("Building WND-CHARM {} release version...".format( __version__ ))
 
 # Since there's a large C++ underpinning for the wndcharm Python API, run autotools to test build environment
 import os
@@ -63,9 +64,9 @@ if not os.path.exists( 'config.h' ):
     p = subprocess.call( [cmd] )
 
     if p != 0:
-	print "Error running configure script"
-	import sys
-	sys.exit(p)
+	    print("Error running configure script")
+    import sys
+    sys.exit(p)
 
 wndchrm_module = Extension('_wndcharm',
 	sources=[

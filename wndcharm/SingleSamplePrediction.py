@@ -111,7 +111,7 @@ class _SingleSamplePrediction( object ):
         """Output tab-separated prediction results data"""
 
         if not line_item:
-            print str(self)
+            print(str(self))
             return
 
         if col_header_only:
@@ -207,9 +207,9 @@ class _SingleSamplePrediction( object ):
                     col_header += "Pred. Val. StDev\t"
 
         if include_col_header:
-            print col_header
+            print(col_header)
         if not col_header_only:
-            print outstr
+            print(outstr)
 
 #=================================================================================
 class SingleSampleClassification( _SingleSamplePrediction ):

@@ -704,8 +704,8 @@ class FeatureVector( object ):
         except IncompleteFeatureSetError:
             # LoadSigFile should create a FeatureComputationPlan
             if not quiet:
-                print 'Loaded {0} features from disk for sample "{1}"'.format(
-                        len( self.temp_names ), self.name )
+                print('Loaded {0} features from disk for sample "{1}"'.format(
+                        len( self.temp_names ), self.name ))
             partial_load = True
 
         # All hope is lost, calculate features.
@@ -748,7 +748,7 @@ class FeatureVector( object ):
         # Get an executor for this plan and run it
         plan_exec = wndcharm.FeatureComputationPlanExecutor( comp_plan )
         if not quiet:
-            print "CALCULATING FEATURES FROM", self.source_filepath, self
+            print("CALCULATING FEATURES FROM", self.source_filepath, self)
         plan_exec.run( px_plane, tmp_vec, 0 )
 
         # get the feature names from the plan
@@ -778,10 +778,10 @@ class FeatureVector( object ):
 
         if not quiet:
             if len( comp_vals ) != len( self ):
-                print "CALCULATED {0} TOTAL FEATURES, REDUCED TO: {1}".format(
-                        len( comp_vals ), self )
+                print("CALCULATED {0} TOTAL FEATURES, REDUCED TO: {1}".format(
+                        len( comp_vals ), self ))
             else:
-                print "CALCULATED: " + str( self )
+                print("CALCULATED: " + str( self ))
 
         # FIXME: maybe write to disk BEFORE feature reduce? Provide flag to let user decide?
         if write_to_disk:
@@ -865,9 +865,9 @@ class FeatureVector( object ):
             if not quiet:
                 # Specific to FeatureVector implementation:
                 # no num_samples member:
-                print 'Normalizing {0} "{1}" ({2} features) against {3} "{4}"'.format(
+                print('Normalizing {0} "{1}" ({2} features) against {3} "{4}"'.format(
                     self.__class__.__name__, self.name, len( self.feature_names),
-                    reference_features.__class__.__name__, reference_features.name )
+                    reference_features.__class__.__name__, reference_features.name ))
 
             # Need to make sure there are feature minima/maxima to normalize against:
             if not reference_features.normalized_against:
@@ -964,7 +964,7 @@ class FeatureVector( object ):
             newfv = self.Derive( **newdata )
 
         if not quiet:
-            print "FEATURE VECTOR REDUCED (orig len {0}): {1}".format( orig_len, newfv )
+            print("FEATURE VECTOR REDUCED (orig len {0}): {1}".format( orig_len, newfv ))
         return newfv
 
     #================================================================
@@ -1123,7 +1123,7 @@ class FeatureVector( object ):
             self.Update()
 
         if not quiet:
-            print "LOADED ", str( self )
+            print("LOADED ", str( self ))
         return self
 
     #================================================================
@@ -1150,9 +1150,9 @@ class FeatureVector( object ):
 
         if not quiet:
             if exists( path ):
-                print "Overwriting {0}".format( path )
+                print("Overwriting {0}".format( path ))
             else:
-                print 'Writing signature file "{0}"'.format( path )
+                print('Writing signature file "{0}"'.format( path ))
         
         with open( path, "w" ) as out:
             # FIXME: line 1 contains class membership and version

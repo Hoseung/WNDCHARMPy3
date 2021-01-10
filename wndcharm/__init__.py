@@ -24,7 +24,8 @@
 
 __version__ = "unknown"
 
-from wndcharm import *
+#from wndcharm import *
+from . import *
 
 try:
     from _version import __version__

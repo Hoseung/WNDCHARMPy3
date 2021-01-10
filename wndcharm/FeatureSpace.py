@@ -307,13 +307,13 @@ class FeatureSpace( object ):
         """Prints out basic attributes about this training set, including name, path to
         source data, number and composition of image classes, number of features, etc."""
 
-        print 'Summary of {0} "{1}":'.format( self.__class__.__name__ , self.name )
+        print('Summary of {0} "{1}":'.format( self.__class__.__name__ , self.name ))
         if self.name != self.source_filepath:
-            print 'source: "{0}"'.format( self.source_filepath )
-        print 'Total samples: {0} ({1} groups, {2} samples/group)'.format( self.num_samples,
-          len( set( self._contiguous_sample_group_ids ) ), self.num_samples_per_group )
-        print 'Total num features: {0}'.format( len( self.feature_names ) )
-        print 'Feature Set Version: {0}'.format( self.feature_set_version )
+            print('source: "{0}"'.format( self.source_filepath ))
+        print('Total samples: {0} ({1} groups, {2} samples/group)'.format( self.num_samples,
+          len( set( self._contiguous_sample_group_ids ) ), self.num_samples_per_group ))
+        print('Total num features: {0}'.format( len( self.feature_names ) ))
+        print('Feature Set Version: {0}'.format( self.feature_set_version ))
 
         if self.discrete:
             rpt_str = '\tClass {0} "{1}": {2} samples ({3} groups)'
@@ -338,7 +338,7 @@ class FeatureSpace( object ):
             print header_str
             for line_item in sample_metadata:
                 print format_str.format( *line_item )
-        print ""
+        print(""
 
     #==============================================================
     def __repr__( self ):
@@ -407,7 +407,7 @@ class FeatureSpace( object ):
         if not filename.endswith( ".fit.pickled" ):
             raise ValueError( 'Not a pickled FeatureSpace file: {0}'.format( pathname ) )
 
-        print "Loading Training Set from pickled file {0}".format( pathname )
+        print("Loading Training Set from pickled file {0}".format( pathname )
         the_training_set = None
         with open( pathname, "rb" ) as pkled_in:
             the_training_set = cls( pickle.load( pkled_in ) )
@@ -461,9 +461,9 @@ class FeatureSpace( object ):
                     outfile_pathname = self.source_filepath + ".fit.pickled"    
 
         if os.path.exists( outfile_pathname ):
-            print "Overwriting {0}".format( outfile_pathname )
+            print("Overwriting {0}".format( outfile_pathname )
         else:
-            print "Writing {0}".format( outfile_pathname )
+            print("Writing {0}".format( outfile_pathname )
 
         with open( outfile_pathname, 'wb') as outfile:
             pickle.dump( self.__dict__, outfile, pickle.HIGHEST_PROTOCOL )
@@ -693,9 +693,9 @@ class FeatureSpace( object ):
 
         if not quiet:
             if not reference_features:
-                print 'NORMALIZED FEATURES AGAINST SELF FOR FEATURE SPACE:', str( retval )
+                print('NORMALIZED FEATURES AGAINST SELF FOR FEATURE SPACE:', str( retval )
             else:
-                print 'NORMALIZED FEATURES AGAINST {0} FOR FEATURE SPACE {1}'.format(
+                print('NORMALIZED FEATURES AGAINST {0} FOR FEATURE SPACE {1}'.format(
                     reference_features, retval )
         return retval
 
@@ -777,9 +777,9 @@ class FeatureSpace( object ):
 
         if not quiet:
             if not reference_features:
-                print "LDA TRANSFORMED FEATURE SPACE:", str( retval )
+                print("LDA TRANSFORMED FEATURE SPACE:", str( retval )
             else:
-                print "LDA TRANSFORMED FEATURE SPACE AGAINST {0}, RESULT: {1}".format(
+                print("LDA TRANSFORMED FEATURE SPACE AGAINST {0}, RESULT: {1}".format(
                     reference_features.name, retval )
         return retval
 
@@ -920,7 +920,7 @@ class FeatureSpace( object ):
         new_fs._RebuildViews( recalculate_class_metadata=False )
 
         if not quiet:
-            print "LOADED FEATURE SPACE FROM WND-CHARM .fit FILE {0}: {1}".format(
+            print("LOADED FEATURE SPACE FROM WND-CHARM .fit FILE {0}: {1}".format(
                     pathname, new_fs )
         return new_fs
 
@@ -1028,7 +1028,7 @@ class FeatureSpace( object ):
             global_sampling_options = FeatureVector( **kwargs )
 
         if not quiet:
-            print "Creating Training Set from directories of images {0}".format( top_level_dir_path )
+            print("Creating Training Set from directories of images {0}".format( top_level_dir_path )
 
         feature_vector_list = []
         if global_sampling_options.tile_num_rows is not None:
@@ -1105,7 +1105,7 @@ class FeatureSpace( object ):
                discrete=discrete, quiet=True )
 
         if not quiet:
-            print "NEW FEATURE SPACE FROM DIRECTORY:", str( retval )
+            print("NEW FEATURE SPACE FROM DIRECTORY:", str( retval )
         return retval
 
     #==============================================================
@@ -1401,7 +1401,7 @@ sample2 ClassA  /path/to/ClassA/sample2_A.tiff    {x=12;y=34;w;56;h=78} /path/to
                feature_set_version=feature_set_version, discrete=discrete, quiet=True )
 
         if not quiet:
-            print "NEW FEATURE SPACE FROM FILE LIST:", retval
+            print("NEW FEATURE SPACE FROM FILE LIST:", retval
         return retval
     #==============================================================
     @classmethod
@@ -1433,7 +1433,7 @@ sample2 ClassA  /path/to/ClassA/sample2_A.tiff    {x=12;y=34;w;56;h=78} /path/to
                 source_filepath=window.source_filepath, quiet=True )
 
         if not quiet:
-            print "NEW FEATURE SPACE FROM SCANING WINDOW:", str( new_fs )
+            print("NEW FEATURE SPACE FROM SCANING WINDOW:", str( new_fs )
 
         return new_fs
 
@@ -1532,7 +1532,7 @@ sample2 ClassA  /path/to/ClassA/sample2_A.tiff    {x=12;y=34;w;56;h=78} /path/to
             row_index = (fv.sample_group_id * num_samples_per_group) + fv.sample_sequence_id
 
             if not quiet:
-                print 'row index', row_index, "left", col_left_boundary_index, "right", col_right_boundary_index, str( fv )
+                print('row index', row_index, "left", col_left_boundary_index, "right", col_right_boundary_index, str( fv )
             # Fill in column metadata if we've not seen a feature vector for this col before
             if fv.fs_col not in feature_set_col_offset:
                 feature_set_col_offset[ fv.fs_col ] = col_right_boundary_index
@@ -1556,7 +1556,7 @@ sample2 ClassA  /path/to/ClassA/sample2_A.tiff    {x=12;y=34;w;56;h=78} /path/to
         new_fs._RebuildViews()
 
         if not quiet:
-            print "NEW FEATURE SPACE FROM LIST OF FEATURE VECTORS:", str( new_fs )
+            print("NEW FEATURE SPACE FROM LIST OF FEATURE VECTORS:", str( new_fs )
 
         return new_fs
 
@@ -1644,7 +1644,7 @@ sample2 ClassA  /path/to/ClassA/sample2_A.tiff    {x=12;y=34;w;56;h=78} /path/to
             newfs = self.Derive( **newdata )
 
         if not quiet:
-            print "FEATURE-REDUCED FEATURE SPACE (orig len {0}) {1}:'".format(
+            print("FEATURE-REDUCED FEATURE SPACE (orig len {0}) {1}:'".format(
                     orig_len, newfs )
         return newfs
 
@@ -1770,7 +1770,7 @@ sample2 ClassA  /path/to/ClassA/sample2_A.tiff    {x=12;y=34;w;56;h=78} /path/to
             retval._RebuildViews()
 
         if not quiet:
-            print "SAMPLE REDUCED FEATURE SPACE: ", str( retval )
+            print("SAMPLE REDUCED FEATURE SPACE: ", str( retval )
         return retval
 
     #==============================================================
@@ -1944,13 +1944,13 @@ sample2 ClassA  /path/to/ClassA/sample2_A.tiff    {x=12;y=34;w;56;h=78} /path/to
 
         training_set = self.SampleReduce( train_groups, inplace=False, quiet=True )
         if not quiet:
-            print "SPLIT FEATURE SPACE INTO TRAINING SET: ", str( training_set )
+            print("SPLIT FEATURE SPACE INTO TRAINING SET: ", str( training_set )
         if training_set_only:
             return training_set
 
         test_set = self.SampleReduce( test_groups, inplace=False, quiet=True )
         if not quiet:
-            print "TEST SET: ", str( test_set )
+            print("TEST SET: ", str( test_set )
         return training_set, test_set
 
     #==============================================================
@@ -1976,11 +1976,11 @@ sample2 ClassA  /path/to/ClassA/sample2_A.tiff    {x=12;y=34;w;56;h=78} /path/to
                 leave_out_sample_group_ids=sample_group_ids_to_be_removed,
                 inplace=inplace, quiet=True )
         except Exception:
-            print "Error removing class {0}".format( class_token )
+            print("Error removing class {0}".format( class_token )
             raise
 
         if not quiet:
-            print "REMOVED CLASS {0}, RESULTANT FEATURE SPACE: {1}".format( class_token, retval )
+            print("REMOVED CLASS {0}, RESULTANT FEATURE SPACE: {1}".format( class_token, retval )
         return retval
 
     #==============================================================
@@ -2014,7 +2014,7 @@ sample2 ClassA  /path/to/ClassA/sample2_A.tiff    {x=12;y=34;w;56;h=78} /path/to
             self._contiguous_sample_group_ids = old_sg_ids
 
         if not quiet:
-            print "TOOK TILES {0}, RESULTANT FEATURE SPACE: {1}".format( wanted_tiles, retval )
+            print("TOOK TILES {0}, RESULTANT FEATURE SPACE: {1}".format( wanted_tiles, retval )
         return retval
 
     #==============================================================
@@ -2094,7 +2094,7 @@ sample2 ClassA  /path/to/ClassA/sample2_A.tiff    {x=12;y=34;w;56;h=78} /path/to
         retval.SortSamplesByGroundTruth( rebuild_views=True, inplace=True )
 
         if not quiet:
-            print "COMBINED SAMPLES INTO NEW FEATURE SPACE: ", str( retval )
+            print("COMBINED SAMPLES INTO NEW FEATURE SPACE: ", str( retval )
         return retval
 
     #==============================================================

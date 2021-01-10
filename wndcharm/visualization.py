@@ -83,7 +83,7 @@ def RankOrderedPredictedValuesGraph( labels, predicted_values, figsize=(15, 10),
         # convert list of bools to the indices that eval to True:
         # why does numpy where return a 1-tuple??
         indices = np.where( [ l == class_value for l in labels ] )[0]
-        #print indices
+        #print(indices
         class_pred_values = sorted( predicted_values[ indices ] )
         x_vals = [ i + abscissa_index for i in xrange( len( class_pred_values ) ) ]
         ax.scatter( x_vals, class_pred_values, c=class_color, marker='o',
@@ -184,7 +184,7 @@ class _BaseGraph( object ):
         if self.figure == None:
             raise ValueError( 'No figure to save!' )
         self.figure.savefig( filepath )
-        print 'Wrote chart "{0}" to file "{1}"'.format( self.chart_title, filepath )
+        print('Wrote chart "{0}" to file "{1}"'.format( self.chart_title, filepath ))
             
 #============================================================================
 class PredictedValuesGraph( _BaseGraph ):

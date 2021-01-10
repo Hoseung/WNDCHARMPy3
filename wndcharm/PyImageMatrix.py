@@ -67,14 +67,14 @@ if __name__ == "__main__":
 	im = PyImageMatrix()
 	im.allocate (200,200)
 	mat = im.as_ndarray()
-	print "mat = im.as_ndarray()"
-	print mat
-	print "mat.ctypes.data: {0:x}".format(mat.ctypes.data)
+	print("mat = im.as_ndarray()")
+	print(mat)
+	print("mat.ctypes.data: {0:x}".format(mat.ctypes.data))
 	mat[:] = 0.
-	print "mat.ctypes.data: {0:x} after mat[:] = 0".format(mat.ctypes.data)
-	print mat
-	print "deallocating mat"
+	print("mat.ctypes.data: {0:x} after mat[:] = 0".format(mat.ctypes.data))
+	print(mat)
+	print("deallocating mat")
 	mat = None
-	print "deallocating im"
+	print("deallocating im")
 	im = None
-	print "last line"
+	print("last line")

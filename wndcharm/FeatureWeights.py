@@ -284,8 +284,8 @@ class FisherFeatureWeights( FeatureWeights ):
             for i, feat_fig_of_merit in enumerate( [ line[0] for line in use_these_feature_weights ] ):
                 if feat_fig_of_merit == 0:
                     if _all == 'non-zero':
-                        print "Features rank index {0} and below have a correllation coefficient of 0. ".format( i )
-                        print 'Using {0} features'.format( i )
+                        print("Features rank index {0} and below have a correllation coefficient of 0. ".format( i ))
+                        print('Using {0} features'.format( i ))
                         use_these_feature_weights = use_these_feature_weights[ : i ]
                         break
                     else:
@@ -321,14 +321,14 @@ class FisherFeatureWeights( FeatureWeights ):
         if self.name:
             s += ' "{0}:"'.format( self.name )
         s += " ({0} features)".format( len( self ) )
-        print s
-        print "Rank\tValue\tName"
-        print "====\t=====\t===="
+        print(s)
+        print("Rank\tValue\tName")
+        print("====\t=====\t====")
         for i, (val, name) in enumerate( features, start=1 ):
-            print "{0}\t{1:.6f}\t{2}".format( i, val, name )
+            print("{0}\t{1:.6f}\t{2}".format( i, val, name ))
 
         if remainder:
-            print "<output truncated by user via \"display\" arg, {0} more feature weights>".format( remainder )
+            print("<output truncated by user via \"display\" arg, {0} more feature weights>".format( remainder ))
 
 #############################################################################
 # class definition of PearsonFeatureWeights
@@ -497,8 +497,8 @@ class PearsonFeatureWeights( FeatureWeights ):
                 for i, feat_fig_of_merit in enumerate( [ line[0] for line in use_these_feature_weights ] ):
                     if feat_fig_of_merit == 0:
                         if _all == 'nonzero':
-                            print "Features rank index {0} and below have a correllation coefficient of 0. ".format( i )
-                            print 'Using {0} features'.format( i )
+                            print("Features rank index {0} and below have a correllation coefficient of 0. ".format( i ))
+                            print('Using {0} features'.format( i ))
                             use_these_feature_weights = use_these_feature_weights[ : i ]
                             break
                         else:
@@ -573,21 +573,21 @@ class PearsonFeatureWeights( FeatureWeights ):
         if self.name:
             s += ' "{0}:"'.format( self.name )
         s += " ({0} features)".format( len(self ) )
-        print s
+        print(s)
 
-        print "-----------------------------------"
+        print("-----------------------------------")
 
         if print_legend:
-            print "Legend:"
-            print "IFW - Feature weight applied to the individual feature"
-            print "IPC - Pearson correlation coefficient of feature values vs ground truth"
-            print "IPE - Standard Error of IPC"
-            print "IPP - P-value of IPC"
-            print "ISC - Spearman correlation coefficient of feature values vs ground truth"
-            print "IPP - P-value of ISC"
-            print ""
-        print "NUM\tIFW\tIPC\tIPE\tIPP\tISC\tIPP\tNAME"
-        print "===\t===\t===\t===\t===\t===\t===\t===="
+            print("Legend:")
+            print("IFW - Feature weight applied to the individual feature")
+            print("IPC - Pearson correlation coefficient of feature values vs ground truth")
+            print("IPE - Standard Error of IPC")
+            print("IPP - P-value of IPC")
+            print("ISC - Spearman correlation coefficient of feature values vs ground truth")
+            print("IPP - P-value of ISC")
+            print("")
+        print("NUM\tIFW\tIPC\tIPE\tIPP\tISC\tIPP\tNAME")
+        print("===\t===\t===\t===\t===\t===\t===\t====")
         for i in range( display ):
             line_item = "{0}\t".format( i + 1 )
             line_item += "{0:2.4f}\t".format( self.values[i] )
@@ -600,6 +600,6 @@ class PearsonFeatureWeights( FeatureWeights ):
                 line_item += self.feature_names[i]
             else:
                 line_item += self.feature_names[i][:50] + '... (truncated)'
-            print line_item
+            print(line_item)
         if remainder:
-            print "<output truncated by user, {0} more feature weights>".format( remainder )
+            print("<output truncated by user, {0} more feature weights>".format( remainder ))

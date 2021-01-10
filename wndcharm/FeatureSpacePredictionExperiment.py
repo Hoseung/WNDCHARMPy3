@@ -221,7 +221,7 @@ class _FeatureSpacePredictionExperiment( _FeatureSpacePrediction ):
                 max( param_space ), kwargs['feature_space'].num_features ) )
 
         if not quiet:
-            print "Using num features param space of :", param_space
+            print("Using num features param space of :", param_space)
 
         X = []
         Y = []
@@ -229,9 +229,9 @@ class _FeatureSpacePredictionExperiment( _FeatureSpacePrediction ):
         kwargs['progress'] = False
 
         if not quiet:
-            print "==================================================="
-            print "FEATURE WEIGHT GRID SEARCH RESULTS:"
-            print "n features\t figure of merit"
+            print("===================================================")
+            print("FEATURE WEIGHT GRID SEARCH RESULTS:")
+            print("n features\t figure of merit")
 
         for n_features in param_space:
             try:
@@ -241,33 +241,33 @@ class _FeatureSpacePredictionExperiment( _FeatureSpacePrediction ):
                 #    ValueError: Can't reduce feature weights "None" to 2919 features.
                 #    Features ranked 2631 and below have a Fisher score of 0. Request
                 #    less features.
-                print "Skipping n_features={} and above due to feature reduction error".format( n_features )
-                print e
+                print("Skipping n_features={} and above due to feature reduction error".format( n_features ))
+                print(e)
                 break
             exp.GenerateStats()
             X.append( n_features )
             Y.append( exp.figure_of_merit )
             E.append( exp.confidence_interval )
             if not quiet:
-                    print "{}\t{}".format( n_features, exp.figure_of_merit )
+                    print("{}\t{}".format( n_features, exp.figure_of_merit ))
 
         return (X, Y, E)
 
-#        print ""
-#        print "Aggregate feature weight analysis:"
-#        print "-----------------------------------"
-#        print "Legend:"
-#        print "NUM - Number of features used in aggregate / Individual feature rank"
-#        print "ASE - Standard Error of Final Predicted Value (using aggregated feature) vs ground truth"
-#        print "APC - Pearson correlation coefficient of Final Predicted Values vs ground truth"
-#        print "APE - Standard Error of APC"
-#        print "APP - P-value of APC"
-#        print "ASC - Spearman correlation coefficient of Final Predicted Values vs ground truth"
-#        print "APP - P-value of ASC"
-#        print ""
+#        print(""
+#        print("Aggregate feature weight analysis:"
+#        print("-----------------------------------"
+#        print("Legend:"
+#        print("NUM - Number of features used in aggregate / Individual feature rank"
+#        print("ASE - Standard Error of Final Predicted Value (using aggregated feature) vs ground truth"
+#        print("APC - Pearson correlation coefficient of Final Predicted Values vs ground truth"
+#        print("APE - Standard Error of APC"
+#        print("APP - P-value of APC"
+#        print("ASC - Spearman correlation coefficient of Final Predicted Values vs ground truth"
+#        print("APP - P-value of ASC"
+#        print(""
 #
-#        print "NUM\tASE\tAPC\tAPE\tAPP\tASC\tAPP"
-#        print "===\t===\t===\t===\t===\t===\t==="
+#        print("NUM\tASE\tAPC\tAPE\tAPP\tASC\tAPP"
+#        print("===\t===\t===\t===\t===\t===\t==="
 #        for result in self.individual_results:
 #            line_item = "{0}\t".format( len( result.feature_weights.values ) ) # NUM
 #            line_item += "{0:.4f}\t".format( result.std_err ) # ASE
@@ -276,7 +276,7 @@ class _FeatureSpacePredictionExperiment( _FeatureSpacePrediction ):
 #            line_item += "{0:.4f}\t".format( result.pearson_p_value ) # APP
 #            line_item += "{0:.4f}\t".format( result.spearman_coeff ) # ASC
 #            line_item += "{0:.4f}\t".format( result.spearman_p_value ) # ASP
-#            print line_item
+#            print(line_item
 
     #=====================================================================
     @classmethod
@@ -329,7 +329,7 @@ class _FeatureSpacePredictionExperiment( _FeatureSpacePrediction ):
             del param_space[ param_space.index( 2 ) ]
 
         if not quiet:
-            print "Using num samples per class param space of :", param_space
+            print("Using num samples per class param space of :", param_space)
 
         X = []
         Y = []
@@ -337,9 +337,9 @@ class _FeatureSpacePredictionExperiment( _FeatureSpacePrediction ):
         kwargs['progress'] = False
 
         if not quiet:
-            print "==================================================="
-            print "NUM TRAINING SET SAMPLES GRID SEARCH RESULTS:"
-            print "n samples\t figure of merit"
+            print("===================================================")
+            print("NUM TRAINING SET SAMPLES GRID SEARCH RESULTS:")
+            print("n samples\t figure of merit")
 
         if "test_size" not in kwargs:
             kwargs['test_size'] = 1
@@ -348,14 +348,14 @@ class _FeatureSpacePredictionExperiment( _FeatureSpacePrediction ):
             try:
                 exp = cls.NewShuffleSplit( quiet=True, train_size=n_samples, **kwargs )
             except ValueError:
-                print "Skipping n_samples={} and above due to a FeatureSpace.Split error".format( n_samples )
+                print("Skipping n_samples={} and above due to a FeatureSpace.Split error".format( n_samples ))
                 break
             exp.GenerateStats()
             X.append( n_samples )
             Y.append( exp.figure_of_merit )
             E.append( exp.confidence_interval )
             if not quiet:
-                print "{}\t{}".format( n_samples, exp.figure_of_merit )
+                print("{}\t{}".format( n_samples, exp.figure_of_merit ))
 
         return (X, Y, E)
 
@@ -459,7 +459,7 @@ class _FeatureSpacePredictionExperiment( _FeatureSpacePrediction ):
             lda_features_slice = None
 
         if not quiet:
-            print "using top " + str( num_features ) + " features"
+            print("using top " + str( num_features ) + " features")
 
         if not quiet:
             progress = False
@@ -505,8 +505,8 @@ class _FeatureSpacePredictionExperiment( _FeatureSpacePrediction ):
 
         for split_index in xrange( n_iter ):
             if not quiet:
-                print "\n\n=========================================="
-                print "SHUFFLE SPLIT ITERATION", str( split_index )
+                print("\n\n==========================================")
+                print("SHUFFLE SPLIT ITERATION", str( split_index ))
             if progress:
                 stdout.write( str( split_index ) + '\t' )
 
@@ -606,7 +606,7 @@ class _FeatureSpacePredictionExperiment( _FeatureSpacePrediction ):
         if not quiet:
             experiment.Print()
             if nonconvergence_count > 0:
-                print "nonconvergence count: ", nonconvergence_count
+                print("nonconvergence count: ", nonconvergence_count)
 
         return experiment
 
@@ -831,17 +831,17 @@ class FeatureSpaceClassificationExperiment( _FeatureSpacePredictionExperiment ):
             if n_feature_weights <= display:
                 if n_feature_weights > 0:
                     display = n_feature_weights
-                    print "Displaying feature weight statistics for all {0} features".format(
-                            display )
+                    print("Displaying feature weight statistics for all {0} features".format(
+                            display ))
         else:
             display = False
 
-        print '='*50
+        print('='*50)
         s = self.__class__.__name__
         if self.name:
             s += ' "' + self.name + '"'
         s += " (" + str( len( self.individual_results ) ) + " iterations)"
-        print s
+        print(s)
 
         acc = self.classification_accuracy
         n = self.num_classifications
@@ -853,8 +853,8 @@ class FeatureSpaceClassificationExperiment( _FeatureSpacePredictionExperiment ):
             # to use normal approximation of binomial distribution:
             if ((n * acc) > 5) and ((n * (1 - acc)) > 5):
                 # Using normal approximation:
-                print "{0}/{1} correct = {2:0.2f} +/- {3:0.2f}% w/ 95% conf. (normal approx. interval)".format(
-                    n_correct, n, acc * 100, conf_interval * 100 )
+                print("{0}/{1} correct = {2:0.2f} +/- {3:0.2f}% w/ 95% conf. (normal approx. interval)".format(
+                    n_correct, n, acc * 100, conf_interval * 100 ))
             else:
                 # Using Wilson approximation:
                 # This term goes to 1 as number of classifications gets large:
@@ -867,30 +867,30 @@ class FeatureSpaceClassificationExperiment( _FeatureSpacePredictionExperiment ):
                     n_correct, n, raw_acc * 100, conf_interval * 100 )
                 outstr += " ({0:0.2f} +/- {1:0.2f}% w/ 95% conf. (Wilson score interval))".format(
                         acc * 100, conf_interval * 100)
-                print outstr
+                print(outstr)
         else:
-            print "{0}/{1} correct = {2:0.2f}%".format( n_correct, n, acc * 100 )
+            print("{0}/{1} correct = {2:0.2f}%".format( n_correct, n, acc * 100 ))
 
         if self.std_err is not None:
-            print "Standard Error: {0:0.4f}".format( self.std_err)
+            print("Standard Error: {0:0.4f}".format( self.std_err))
         if self.pearson_coeff is not None:
-            print "Pearson Corellation Coefficient (r): {0:0.4f}".format( self.pearson_coeff )
-            print "Coefficient of Determination (r^2): {0:0.4f}".format( self.pearson_coeff ** 2 )
+            print("Pearson Corellation Coefficient (r): {0:0.4f}".format( self.pearson_coeff ))
+            print("Coefficient of Determination (r^2): {0:0.4f}".format( self.pearson_coeff ** 2 ))
         if self.spearman_coeff is not None:
-            print "Spearman Coefficient: {0:0.4f}".format( self.spearman_coeff )
-        print "\n"
+            print("Spearman Coefficient: {0:0.4f}".format( self.spearman_coeff ))
+        print("\n")
 
-        print self.ConfusionMatrix(), '\n'
-        print self.SimilarityMatrix(), '\n'
-        print self.AvgClassProbMatrix(), '\n'
+        print(self.ConfusionMatrix(), '\n')
+        print(self.SimilarityMatrix(), '\n')
+        print(self.AvgClassProbMatrix(), '\n')
 
         if display:
             outstr = "{0}\t{1:0.3f}\t{2:>3}\t{3:0.3f}\t{4:0.3f}\t{5:0.3f}\t{6}"
-            print "Feature Weight Analysis (top {0} features):".format( display )
-            print "Rank\tmean\tcount\tStdDev\tMin\tMax\tName"
-            print "----\t----\t-----\t------\t---\t---\t----"
+            print("Feature Weight Analysis (top {0} features):".format( display ))
+            print("Rank\tmean\tcount\tStdDev\tMin\tMax\tName")
+            print("----\t----\t-----\t------\t---\t---\t----")
             for count, fw_stat in enumerate( self.feature_weight_statistics[:display], 1 ):
-                print outstr.format( count, *fw_stat )
+                print(outstr.format( count, *fw_stat ))
 
     #=====================================================================
     @classmethod
@@ -961,7 +961,7 @@ class FeatureSpaceClassificationExperiment( _FeatureSpacePredictionExperiment ):
                         #interp_val_col = ts.num_classes + 6
                         name_col = ts.num_classes + 7
                         if not quiet:
-                            print "TRAINING SET:", _training_set
+                            print("TRAINING SET:", _training_set)
                 elif 'testset_summary' in line:
                     testset_definition = True
                 elif testset_definition == True:
@@ -970,7 +970,7 @@ class FeatureSpaceClassificationExperiment( _FeatureSpacePredictionExperiment ):
                         testset_definition = False
                         _test_set = ParseClassSummaryHTML( testset_html )
                         if not quiet:
-                            print "TEST SET:", _test_set
+                            print("TEST SET:", _test_set)
 
                 elif line.startswith( '<TABLE ID="IndividualImages_split' ):
                     # If we haven't seen a test set definition by now, we ain't gonna see one period.
@@ -1100,19 +1100,19 @@ class FeatureSpaceRegressionExperiment( _FeatureSpacePredictionExperiment ):
         if self.std_err == None:
             self.GenerateStats()
 
-        print "\n==========================================="
-        print '{0} "{1}"'.format( self.__class__.__name__, self.name )
-        print 'Num iterations ("splits"): {0}'.format( len( self.individual_results ) )
-        print "Total num classifications: {0}".format( self.num_classifications )
-        print "Standard error: {0}".format( self.std_err )
-        print "Pearson corellation coefficient: {0}".format( self.pearson_coeff )
-        print "Pearson p-value: {0}".format( self.pearson_p_value )        
+        print("\n===========================================")
+        print('{0} "{1}"'.format( self.__class__.__name__, self.name ))
+        print('Num iterations ("splits"): {0}'.format( len( self.individual_results ) ))
+        print("Total num classifications: {0}".format( self.num_classifications ))
+        print("Standard error: {0}".format( self.std_err ))
+        print("Pearson corellation coefficient: {0}".format( self.pearson_coeff ))
+        print("Pearson p-value: {0}".format( self.pearson_p_value ))
 
         outstr = "{0}\t{1:0.3f}\t{2:>3}\t{3:0.3f}\t{4:0.3f}\t{5:0.3f}\t{6}"
-        print "Feature Weight Analysis (top 50 features):"
-        print "Rank\tmean\tcount\tStdDev\tMin\tMax\tName"
-        print "----\t----\t-----\t------\t---\t---\t----"
+        print("Feature Weight Analysis (top 50 features):")
+        print("Rank\tmean\tcount\tStdDev\tMin\tMax\tName")
+        print("----\t----\t-----\t------\t---\t---\t----")
         for count, fw_stat in enumerate( self.feature_weight_statistics, 1 ):
-            print outstr.format( count, *fw_stat )
+            print(outstr.format( count, *fw_stat ))
             if count >= 50:
                 break
